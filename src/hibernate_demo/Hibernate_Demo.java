@@ -10,6 +10,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.edu.hibernate.dto.Address;
 import org.edu.hibernate.dto.StudentAcademic;
+import org.edu.hibernate.dto.Books;
+import org.edu.hibernate.dto.Course;
+import org.edu.hibernate.dto.Lecturer;
+import org.edu.hibernate.dto.Regular;
+import org.edu.hibernate.dto.Visiting;
 
 /**
  *
@@ -58,9 +63,58 @@ public class Hibernate_Demo {
         
         session.persist(x);
         
+        //Couple of books instance
+        Books b = new Books();
+        b.setTitle("Biochemistry 101");
+        //setting the student object
+        b.setStudent(x);
+        
+        Books c = new Books();
+        c.setTitle("Mathematics: Intermidiate");
+        c.setStudent(x);
+        
+        //for bidirectional assign the books to student
+        x.getBooks().add(b);
+        x.getBooks().add(c);
+        
+        //create instance of course
+        Course java = new Course();
+        java.setTitle("Core java programming");
+        
+        
+        x.getCourses().add(java);
+        
+        
+        Course cpp = new Course();
+        cpp.setTitle("C++ Programming");
+        
+        
+        x.getCourses().add(cpp);
+        
+        
+        //student is persisted here
+        session.persist(java);
+        session.persist(cpp);
+        session.persist(x);
+        
+        //Working with inheritance
+        Lecturer lecturer = new Lecturer();
+        lecturer.setName("Anonymous");
+        
+        Regular Avadhoot = new Regular();
+        Avadhoot.setName("Avadhoot Athalye");
+        Avadhoot.setSalary(40000);
+        
+        Visiting Jay = new Visiting();
+        Jay.setName("Jay Teachar");
+        Jay.setHourlyCharges(1000);
+        
+        session.persist(lecturer);
+        session.persist(Avadhoot);
+        session.persist(Jay);
+        
         tx.commit();
         session.close();
-        
         
     }
     

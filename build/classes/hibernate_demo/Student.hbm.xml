@@ -56,5 +56,21 @@
   <one-to-one name="academic" class="org.edu.hibernate.dto.StudentAcademic"
               cascade="save-update">
   </one-to-one>
+  
+  <!-- working with one-to-many relationship relationship -->
+  <set name="books" table="book" cascade="save-update" inverse="true">
+      <key>
+        <column name="student_id" not-null="true"/>
+      </key>
+      <one-to-many class="org.edu.hibernate.dto.Books"/>
+  </set>
+  
+  <!--many to many relationship -->
+  <set name="courses" table="course_student_info" cascade="save-update" fetch="select" lazy="false">
+      <key>
+          <column name="student_id" not-null="true"/>  
+      </key>
+      <many-to-many column="course_id" class="org.edu.hibernate.dto.Course" />
+    </set>
   </class>
 </hibernate-mapping>

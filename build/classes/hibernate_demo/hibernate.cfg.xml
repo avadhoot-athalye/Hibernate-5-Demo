@@ -14,5 +14,8 @@
     <property name="hibernate.hbm2ddl.auto">create</property>
     <mapping resource="hibernate_demo/Student.hbm.xml"/>
     <mapping resource="hibernate_demo/StudentAcademic.hbm.xml"/>
+    <mapping resource="hibernate_demo/Books.hbm.xml"/>
+    <mapping resource="hibernate_demo/Course.hbm.xml"/>
+    <mapping resource="hibernate_demo/Lecturer.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
